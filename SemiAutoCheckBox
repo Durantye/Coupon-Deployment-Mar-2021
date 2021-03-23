@@ -1,0 +1,38 @@
+// ==UserScript==
+// @name         SemiAutoCouponsVergent
+// @namespace    http://tampermonkey.net/
+// @version      0.4
+// @description  Semi-Automatic script for deploying hardset coupons via jscript, this script as of version 0.4 only works for
+//               Tennessee's new coupons from 03/23/2021.
+// @author       Damion Mason
+// @match        https://cic.vergentlms.com/setup/store.aspx?action=edit*
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
+// @require     https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @grant       GM_addStyle
+// ==/UserScript==
+
+var LOC1 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl93_chkSelected");
+var LOC2 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl103_chkSelected");
+var LOC3 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl109_chkSelected");
+
+var PDL1 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl11_chkSelected");
+var PDL2 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl24_chkSelected");
+var PDL3 = document.getElementById("ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl31_chkSelected");
+
+LOC1.checked = true;
+LOC2.checked = true;
+LOC3.checked = true;
+
+PDL1.checked = true;
+PDL2.checked = true;
+PDL3.checked = true;
+
+
+document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+
+//---AutoTypingReservedSpace---
+//var autofill1 = document.getElementById('HTMLINPUTID')
+//autofill1.value = 'Filled Request'
+//--
+//--ctl00$ctl00$MainContent$ChildContent1$btnSubmit
+//--
