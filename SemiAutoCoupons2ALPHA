@@ -1,0 +1,29 @@
+// ==UserScript==
+// @name         Semiauto Coupons 2 ALPHA
+// @namespace    http://tampermonkey.net/
+// @version      0.2
+// @description  2nd iteration of Semiauto Coupon Deployment, utilizing arrays, loops, and if statements in order to consolidate to a singular script that can be easily populated with the latest data.
+//               Also prevents accidental setup in the wrong centers.
+// @author       Damion Mason
+// @match        https://cic.vergentlms.com/setup/store.aspx?*
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
+// @require     https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @grant       GM_addStyle
+// ==/UserScript==
+
+var coupon_arrayTN = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl93_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl103_chkSelected",
+                                           "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl109_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl11_chkSelected",
+                                            "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl24_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl31_chkSelected"];
+var coupon_arrayIN = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl11_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl24_chkSelected",
+                     "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl31_chkSelected"];
+
+var arrlengthIN = coupon_arrayIN.length;
+let params = (new URL(document.location)).searchParams;
+let sID = params.get('sid');
+
+if ( sID >= 400 && sID <= 552) {
+    for (var i = 0; i < arrlengthIN; i++) {
+        document.getElementById(coupon_arrayIN[i]).checked = true
+    }
+    document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+}
