@@ -1,0 +1,77 @@
+// ==UserScript==
+// @name         Semiauto Coupons 2 READY
+// @namespace    http://tampermonkey.net/
+// @version      1.00
+// @description  2nd iteration of Semiauto Coupon Deployment, utilizing arrays, loops, and if statements in order to consolidate to a singular script that can be easily populated with the latest data.
+//               Also prevents accidental setup in the wrong centers. Also implemented local variables to simplify array cycling and scrapes the url to check for SID ranges to verify which state is loaded.
+//               ---RESERVED---
+// @author       Damion Mason
+// @match        https://cic.vergentlms.com/setup/store.aspx?*
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
+// @require     https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @grant       GM_addStyle
+// ==/UserScript==
+let params = (new URL(document.location)).searchParams;
+let sID = params.get('sid');
+
+//----INDIANA & KENTUCKY/PDL----
+(function() {
+    'use strict';
+
+    var coupon_arrayPDL = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl11_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl24_chkSelected",
+                     "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl31_chkSelected"];
+    var arrlengthPDL = coupon_arrayPDL.length;
+    if ( sID >= 400 && sID <= 552 || sID >= 333 && sID <= 399) {
+    for (var i = 0; i < arrlengthPDL; i++) {
+        document.getElementById(coupon_arrayPDL[i]).checked = true
+    }
+    document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+}
+})();
+
+//----TENNESSEE/PDL AND LOC----
+(function() {
+    'use strict';
+
+    var coupon_arrayTN = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl93_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl103_chkSelected",
+                                           "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl109_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl11_chkSelected",
+                                            "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl24_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl31_chkSelected"];
+    var arrlengthTN = coupon_arrayTN.length;
+    if ( sID >= 105 && sID <= 324) {
+    for (var i = 0; i < arrlengthTN; i++) {
+        document.getElementById(coupon_arrayTN[i]).checked = true
+    }
+    document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+}
+})();
+
+//----OKLAHOMA/INSTALLMENT----
+(function() {
+    'use strict';
+
+    var coupon_arrayOK = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl57_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl68_chkSelected",
+                          "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl75_chkSelected"];
+    var arrlengthOK = coupon_arrayOK.length;
+    if ( sID >= 24 && sID <= 101) {
+    for (var i = 0; i < arrlengthOK; i++) {
+        document.getElementById(coupon_arrayOK[i]).checked = true
+    }
+    document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+}
+})();
+
+//----GEORGIA/TITLE----
+(function() {
+    'use strict';
+
+    var coupon_arrayGA = ["ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl129_chkSelected", "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl145_chkSelected",
+                          "ctl00_ctl00_MainContent_ChildContent1_dlCoupons_ctl152_chkSelected"];
+    var arrlengthGA = coupon_arrayGA.length;
+    if ( sID >= 1 && sID <= 23) {
+    for (var i = 0; i < arrlengthGA; i++) {
+        document.getElementById(coupon_arrayGA[i]).checked = true
+    }
+    document.getElementById("ctl00_ctl00_MainContent_ChildContent1_btnSubmit").click();
+}
+})();
+
